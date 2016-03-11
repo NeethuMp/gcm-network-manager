@@ -13,7 +13,6 @@ import com.google.android.gms.gcm.TaskParams;
  */
 public class BestTimeService extends GcmTaskService{
     private  static  final String TAG="bestTimeService";
-
     @Override
     public int onRunTask(TaskParams taskParams) {
         String taskId=taskParams.getExtras().getString(CodelabUtil.TASK_ID);
@@ -36,6 +35,5 @@ public class BestTimeService extends GcmTaskService{
                 LocalBroadcastManager.getInstance(this);
         localBroadcastManager.sendBroadcast(taskUpdateIntent);
         return GcmNetworkManager.RESULT_SUCCESS;
-
     }
 }

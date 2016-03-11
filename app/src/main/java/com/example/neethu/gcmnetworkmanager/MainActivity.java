@@ -15,6 +15,7 @@ import android.view.View;
 import android.widget.Button;
 import com.google.android.gms.gcm.GcmNetworkManager;
 import com.google.android.gms.gcm.OneoffTask;
+import com.google.android.gms.gcm.PeriodicTask;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -24,7 +25,6 @@ public static final String TASK_ID_PREFIX = "task-id";
     GcmNetworkManager mGcmNetworkManager;
     private class LoadTask extends AsyncTask<Void, Void, List<TaskItem>> {
         private Context mContext;
-
         public LoadTask(Context context) {
             mContext = context;
         }
@@ -57,7 +57,6 @@ public static final String TASK_ID_PREFIX = "task-id";
             if (taskItem.getType().equals(TaskItem.ONEOFF_TASK)) {
                 Bundle bundle = new Bundle();
                 bundle.putString(CodelabUtil.TASK_ID, taskItem.getId());
-
                 // Schedule oneoff task.
                 OneoffTask oneoffTask = new OneoffTask.Builder()
                         .setService(BestTimeService.class)
@@ -137,6 +136,28 @@ public static final String TASK_ID_PREFIX = "task-id";
                 mTaskAdapter.updateTaskItemStatus(taskId, status);
             }
         };
+        Button periodicButton= (Button) findViewById(R.id.periodicButton);
+        periodicButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                long periodSecs = 30L;
+                long flexSecs = 15L;
+
+                String tag = "myScan|1";
+
+                PeriodicTask periodic = new PeriodicTask.Builder()
+                        .setService(PeriodicService.class)
+                        .setPeriod(periodSecs)
+                        .setFlex(flexSecs)
+                        .setTag(tag)
+                        .setPersisted(false)
+                        .setRequiredNetwork(com.google.android.gms.gcm.Task.NETWORK_STATE_ANY)
+                        .setRequiresCharging(false)
+                        .setUpdateCurrent(true)
+                        .build();
+                GcmNetworkManager.getInstance(MainActivity.this).schedule(periodic);
+            }
+        });
     }
     @Override
     public void onResume() {

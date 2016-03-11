@@ -113,7 +113,6 @@ public  static boolean makeNetworkCall(){
         taskItems.add(0, taskItem);
         saveTaskItemsToFile(context, taskItems);
     }
-
     public static void deleteTaskItemFromFile(Context context, TaskItem taskItem) {
         List<TaskItem> taskItems = getTaskItemsFromFile(context);
         for (int i = 0; i < taskItems.size(); i++) {
@@ -125,6 +124,4 @@ public  static boolean makeNetworkCall(){
         }
         saveTaskItemsToFile(context, taskItems);
     }
-
-
 }

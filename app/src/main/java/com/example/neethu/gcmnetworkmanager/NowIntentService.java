@@ -15,7 +15,6 @@ public class NowIntentService extends IntentService {
     public NowIntentService() {
         super(TAG);
     }
-
     @Override
     protected void onHandleIntent(Intent intent) {
         String taskId=intent.getStringExtra(CodelabUtil.TASK_ID);

@@ -36,5 +36,11 @@
             android:text="WHEN BEST"
             android:id="@+id/bestTimeButton"
             android:layout_weight="1"/>
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text=" PERIODIC"
+            android:id="@+id/periodicButton"
+            android:layout_weight="1"/>
     </LinearLayout>
 </RelativeLayout>
