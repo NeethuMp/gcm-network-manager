@@ -78,7 +78,8 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.ViewHolder> {
 
     @Override
     public TaskAdapter.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-        View v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.item_task, viewGroup, false);
+        View v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.item_task,
+                viewGroup, false);
         final ViewHolder viewHolder = new ViewHolder(v);
         viewHolder.getDeleteButton().setOnClickListener(new View.OnClickListener() {
             @Override
